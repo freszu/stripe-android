@@ -38,6 +38,8 @@ class LauncherActivity : AppCompatActivity() {
         private val items = listOf(
             Item(activity.getString(R.string.payment_auth_example),
                 PaymentAuthActivity::class.java),
+            Item("Payment Intent &amp; Setup Intent Confirmation but in fragment",
+                PaymentAuthFragmentHolderActivity::class.java),
             Item(activity.getString(R.string.create_card_token),
                 CreateCardTokenActivity::class.java),
             Item(activity.getString(R.string.create_card_payment_method),
