@@ -32,7 +32,7 @@ class PaymentAuthFragmentHolderActivity : AppCompatActivity(R.layout.payment_aut
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.e(this::class.simpleName, "THIS SHOULD NEVER BE CALLED!")
+        Log.e(this::class.simpleName, "Activity result in activity!")
     }
 }
 
@@ -228,6 +228,7 @@ abstract class BaseIntentFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        Log.e(this::class.simpleName, "Activity result in Fragment!")
 
         viewModel.status.value += "\n\nPayment authentication completed, getting result"
         val isPaymentResult =
