@@ -159,10 +159,13 @@ abstract class BaseIntentFragment : Fragment() {
     ) {
         requireNotNull(paymentMethodCreateParams ?: existingPaymentMethodId)
 
-        viewModel.createPaymentIntent(country) {
-            handleCreatePaymentIntentResponse(it, paymentMethodCreateParams, shippingDetails,
-                stripeAccountId, existingPaymentMethodId, mandateDataParams)
-        }
+        // quick adapt of old sample
+        viewModel.createPaymentIntent(country).observe(this, Observer {
+            it.fold(
+                onSuccess = { handleCreatePaymentIntentResponse(it, paymentMethodCreateParams, shippingDetails, stripeAccountId, existingPaymentMethodId, mandateDataParams) },
+                onFailure = { error("Just crash here quick adapt") }
+            )
+        })
     }
 
     protected fun createAndConfirmSetupIntent(
@@ -170,9 +173,13 @@ abstract class BaseIntentFragment : Fragment() {
         params: PaymentMethodCreateParams,
         stripeAccountId: String? = null
     ) {
-        viewModel.createSetupIntent(country) {
-            handleCreateSetupIntentResponse(it, params, stripeAccountId)
-        }
+        // quick adapt of old sample
+        viewModel.createSetupIntent(country).observe(this, Observer {
+            it.fold(
+                onSuccess = { handleCreateSetupIntentResponse(it, params, stripeAccountId) },
+                onFailure = { error("Just crash here quick adapt") }
+            )
+        })
     }
 
     private fun handleCreatePaymentIntentResponse(

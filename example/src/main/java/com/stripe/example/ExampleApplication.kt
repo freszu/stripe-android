@@ -21,11 +21,12 @@ class ExampleApplication : MultiDexApplication() {
                 .detectDiskWrites()
                 .detectAll()
                 .penaltyLog()
-                .also {
+                // causes crash on 3ds screen
+               /* .also {
                     if (IS_PENALTY_DEATH_ENABLED) {
                         it.penaltyDeath()
                     }
-                }
+                }*/
                 .build()
         )
 
